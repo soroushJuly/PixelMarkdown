@@ -6,7 +6,7 @@
           <p class="text-h6	text-primary pb-5">
             Content
           </p>
-          <MarkDownEditor v-on:new-markdown="UpdateMarkdownContent" />
+          <MarkDownEditor @new-markdown="UpdateMarkdownContent" />
           <MarkDownRenderer :content="markdownContent" />
         </v-container>
       </v-main>
@@ -15,10 +15,9 @@
 </template>
 
 <script setup>
-const markdownContent = ref("");
+const markdownContent = ref('')
 
-const UpdateMarkdownContent = (e) =>
-{
-  markdownContent.value = e;
+const UpdateMarkdownContent = (e) => {
+  markdownContent.value = e
 }
 </script>
