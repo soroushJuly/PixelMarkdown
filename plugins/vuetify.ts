@@ -17,11 +17,11 @@ export default defineNuxtPlugin((app) => {
         light: {
           dark: false,
           colors: {
-            primary: "#333D45", // #333D45
-            secondary: "#999EA2", // #999EA2
-            placeholder: "#C2C5C7", // #C2C5C7
-            borderColor: "#E0E2E3", // #E0E2E3
-          }
+            primary: '#333D45', // #333D45
+            secondary: '#999EA2', // #999EA2
+            placeholder: '#C2C5C7', // #C2C5C7
+            borderColor: '#E0E2E3', // #E0E2E3
+          },
         },
       },
     },
