@@ -1,34 +1,31 @@
 <template>
-  <div class="border-sm text-secondary rounded px-4">
+  <div class="border-sm text-secondary rounded px-4 py-2">
     <ModalMediaMarkup
       v-model:show="isModalVisible"
       @update:content="AppendContent"
     />
-    <div class="py-2">
-      <button
-        v-for="(control, i) in controlsList"
-        :key="'control-'+i"
-        class="pr-4"
-        @click="handleControl(control.action)"
-      >
-        {{ control.name }}
-      </button>
-    </div>
+    <v-btn
+      v-for="(control, i) in controlsList"
+      :key="'control-'+i"
+      variant="text"
+      class="pr-4 pb-2"
+      @click="handleControl(control.action)"
+    >
+      {{ control.name }}
+    </v-btn>
     <v-divider />
-    <div class="text-placeholder pb-4">
-      <v-container
-        class="pa-0 text-primary"
-        fluid
-      >
-        <v-textarea
-          v-model="markdownContent"
-          placeholder="Placeholder"
-          variant="plain"
-          rows="28"
-          @update:model-value="handleChange"
-        />
-      </v-container>
-    </div>
+    <v-container
+      class="pa-0 text-primary"
+      fluid
+    >
+      <v-textarea
+        v-model="markdownContent"
+        placeholder="Placeholder"
+        variant="plain"
+        rows="28"
+        @update:model-value="handleChange"
+      />
+    </v-container>
   </div>
 </template>
 
@@ -41,6 +38,7 @@ const emit = defineEmits(['newMarkdown'])
 const markdownContent = ref(sampleMarkdown)
 const isModalVisible = ref(false)
 
+// Notify when editor centent has changed
 const handleChange = (event) => {
   const specializedMarkdown = CreateSpecialTags(event)
   emit('newMarkdown', specializedMarkdown)
@@ -54,11 +52,9 @@ const AppendContent = (content) => {
 
 // Render the sample on setup (initialization)
 handleChange(markdownContent.value)
-
+// Handle controls based on the action defined for them
 const handleControl = (action) => {
-  if (action) {
-    action()
-  }
+  if (action) action()
 }
 
 const openModal = () => {

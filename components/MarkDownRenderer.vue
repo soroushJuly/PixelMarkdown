@@ -10,11 +10,12 @@
 <script setup>
 import { computed } from 'vue'
 import markdownit from 'markdown-it'
-import markdownItConfig from '~/public/tools/markdown-it-config';
+import markdownItConfig from '~/public/tools/markdown-it-config'
 
-const props = defineProps(['content'])
+const props = defineProps({ content: String })
+// Init the renderer
 const md = markdownit(markdownItConfig)
-
+// Return the value to be printed
 const renderedMarkdown = computed(() => {
   return md.render(props.content)
 })

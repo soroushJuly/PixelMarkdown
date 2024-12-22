@@ -5,13 +5,18 @@ const md = markdownit(markdownItConfig);
 
 // Replace the special markups with htmltags
 const CreateSpecialTags = (input) => {
-
     for (const [key, value] of replacementMap) {
         input = input.replace(key, value)
     }
     return input
 }
 
+const replacementMap = new Map();
+for (const [key, value] of Object.entries(specialMarkupList)) {
+    replacementMap.set(value.regularExpression, value.replacement)
+}
+
+// List of special markups and their regex and html replacements
 const specialMarkupList = {
     'video': { regularExpression: /\[video=([^\]]+)\]/g, replacement: '<video controls><source src=$1><></video>' },
     'image': { regularExpression: /\[img=([^\]]+)\]/g, replacement: '<img src=$1>' },
@@ -27,11 +32,6 @@ const specialMarkupList = {
     },
     'col-left': { regularExpression: /\[col-left\](.*?)\[\/col-left\]/g, replacement: (match, content) => `<div class="v-col col-6">${md.render(content.trim())}</div>` },
     'col-right': { regularExpression: /\[col-right\](.*?)\[\/col-right\]/g, replacement: (match, content) => `<div class="v-col col-6">${md.render(content.trim())}</div>` },
-}
-
-const replacementMap = new Map();
-for (const [key, value] of Object.entries(specialMarkupList)) {
-    replacementMap.set(value.regularExpression, value.replacement)
 }
 
 
