@@ -29,6 +29,7 @@
 </template>
 
 <script setup>
+import { defineEmits, ref } from 'vue'
 import fileUploadTypes from '~/public/file-upload-types'
 
 // TODO: will be used to implement adding with URL of the files
@@ -36,11 +37,15 @@ const selectedFile = ref('')
 const fileList = reactive([])
 const uploadTypes = computed(() => fileUploadTypes)
 
+const emit = defineEmits(['update:content'])
+
+
 // Prepare and send the files to server and wait for results
 const handleFile = async (params) => {
   for (let i = 0; i < params.length; i++) {
     const file = await uploadFile(params[i])
     fileList.push(file)
+    selectedFile.value = file.name
   }
 }
 
@@ -63,6 +68,5 @@ const uploadFile = (file) => {
 // TODO: using state manager could have been better
 const AddMarkup = (markup) => {
   emit('update:content', markup)
-  closeModal()
 }
 </script>
