@@ -11,11 +11,6 @@ const CreateSpecialTags = (input) => {
     return input
 }
 
-const replacementMap = new Map();
-for (const [key, value] of Object.entries(specialMarkupList)) {
-    replacementMap.set(value.regularExpression, value.replacement)
-}
-
 // List of special markups and their regex and html replacements
 const specialMarkupList = {
     'video': { regularExpression: /\[video=([^\]]+)\]/g, replacement: '<video controls><source src=$1><></video>' },
@@ -34,5 +29,9 @@ const specialMarkupList = {
     'col-right': { regularExpression: /\[col-right\](.*?)\[\/col-right\]/g, replacement: (match, content) => `<div class="v-col col-6">${md.render(content.trim())}</div>` },
 }
 
+const replacementMap = new Map();
+for (const [key, value] of Object.entries(specialMarkupList)) {
+    replacementMap.set(value.regularExpression, value.replacement)
+}
 
 export default CreateSpecialTags;
