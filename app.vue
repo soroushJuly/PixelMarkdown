@@ -3,7 +3,7 @@
     <v-app>
       <v-main class="">
         <v-container>
-          <p class="text-h6	text-primary pb-5">
+          <p class="text-h6 text-primary pb-5">
             Content
           </p>
           <MarkDownEditor @new-markdown="UpdateMarkdownContent" />

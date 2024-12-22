@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3 class="text-h6	text-primary pb-5">
+    <h3 class="text-h6 text-primary pb-5">
       Rendered HTML
     </h3>
     <div v-html="renderedMarkdown" />

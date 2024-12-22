@@ -46,7 +46,7 @@ const handleFile = async (params) => {
 
 // Uploading simulation
 const uploadFile = (file) => {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     // Emulate server upload
     setTimeout(() => {
       resolve({
